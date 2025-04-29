@@ -3,10 +3,13 @@ import HttpError from "../helpers/HttpError.js";
 
 const auth = (req, res, next) => {
   passport.authenticate("jwt", { session: false }, (err, user) => {
-    // get token
+    // Get token from header of the request
     const requestToken = req.headers.authorization?.split(" ")[1] || "";
 
-    // return 401 if an error of auth
+    // return 401 in case of any issue happens:
+    // 1. error
+    // 2. user not found
+    // 3. request token doesn't match the user's db token
     if (!user || err || user.token !== requestToken) {
       return next(HttpError(401));
     }

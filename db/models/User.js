@@ -22,4 +22,7 @@ const User = sequelize.define("user", {
   },
 });
 
+await User.sync();
+console.log("\x1b[32m%s\x1b[0m", "'User' model was synchronized.");
+
 export default User;

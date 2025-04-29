@@ -1,7 +1,8 @@
-import { Sequelize } from "sequelize";
 import dotenv from "dotenv";
-
 dotenv.config();
+import { Sequelize } from "sequelize";
+
+console.log("Dialect:", process.env.DB_DIALECT);
 
 const sequelize = new Sequelize(
   process.env.DB_NAME,
@@ -13,20 +14,20 @@ const sequelize = new Sequelize(
     dialectOptions: {
       ssl: {
         require: true,
-        rejectUnauthorized: false,
+        rejectUnauthorized: false, // Дозволяє підключення через SSL
       },
     },
-    logging: console.log,
+    logging: console.log, // Вмикає логи SQL-запитів у консолі
   }
 );
 
-// Check connection
+// Перевірка підключення
 try {
   await sequelize.authenticate();
 
-  console.log("Database connection successful");
+  console.log("\x1b[32m%s\x1b[0m", "✅ Database connection successful");
 } catch (err) {
-  console.error("Database connection error:", err);
+  console.error("\x1b[31m%s\x1b[0m", "❌ Database connection error:", err);
   process.exit(1);
 }
 
