@@ -1,4 +1,4 @@
-import express from "express";
+import { Router } from "express";
 import * as c from "../controllers/contactsControllers.js";
 import validateBody from "../decorators/validateBody.js";
 import {
@@ -9,7 +9,7 @@ import {
 import ctrlWrapper from "../decorators/ctrlWrapper.js";
 import auth from "../middlewares/auth.js";
 
-const contactsRouter = express.Router();
+const contactsRouter = Router();
 
 contactsRouter.use(auth);
 

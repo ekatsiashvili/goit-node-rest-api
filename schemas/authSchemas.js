@@ -14,3 +14,10 @@ export const registerLoginUserSchema = Joi.object({
 export const updateSubscriptionUserSchema = Joi.object({
   subscription: Joi.string().valid("starter", "pro", "business").required(),
 });
+
+export const emailUserSchema = Joi.object({
+  email: Joi.string()
+    .email()
+    .message("Email: Please enter a valid email address")
+    .required(),
+});

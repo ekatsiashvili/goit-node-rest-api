@@ -1,8 +1,4 @@
-import dotenv from "dotenv";
-dotenv.config();
 import { Sequelize } from "sequelize";
-
-console.log("Dialect:", process.env.DB_DIALECT);
 
 const sequelize = new Sequelize(
   process.env.DB_NAME,
@@ -30,5 +26,7 @@ try {
   console.error("\x1b[31m%s\x1b[0m", "❌ Database connection error:", err);
   process.exit(1);
 }
+
+// sequelize.sync({ force: true });
 
 export default sequelize;

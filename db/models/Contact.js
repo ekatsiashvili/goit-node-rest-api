@@ -24,7 +24,7 @@ const Contact = sequelize.define("contact", {
   },
 });
 
-await Contact.sync();
-console.log("\x1b[32m%s\x1b[0m", "'Contact' model was synchronized.");
+// await Contact.sync({ force: true });
+// console.log("\x1b[32m%s\x1b[0m", "'Contact' model was synchronized.");
 
 export default Contact;
